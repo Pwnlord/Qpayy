@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import screenSplash from "./images/screens/screen_splash.png";
-// Step 1: Enter Amount | Step 2: Merchant Scans (QR) | Step 3: Payment Confirmed
+
 const screenStep1 = "/screen2.jpg";
 const screenStep2 = "/screen33.jpg";
 const screenStep3 = "/screen_1.jpg";
@@ -26,11 +26,9 @@ const pills = [
 const AppShowcase = () => {
   const stripRef = useRef(null);
   const marqueeRef = useRef(null);
-  const tweenRef = useRef(null);
   const pillTweenRef = useRef(null);
 
   useEffect(() => {
-    // 1. Marquee animation
     if (marqueeRef.current) {
       pillTweenRef.current = gsap.to(marqueeRef.current, {
         xPercent: -50,
@@ -40,21 +38,20 @@ const AppShowcase = () => {
       });
     }
 
-    // 2. Phone Strip auto-scroll via Ticker
     let xPos = 0;
-    const speed = 1.6; // pixels per frame
+    const speed = 1.6;
     const strip = stripRef.current;
     let halfWidth = 0;
 
     const tick = () => {
       if (!strip) return;
-      // Calculate half width dynamically in case of late layout calculation
       if (!halfWidth) halfWidth = strip.scrollWidth / 2;
-      
+
       xPos -= speed;
       if (Math.abs(xPos) >= halfWidth) {
-        xPos = 0; // instant reset — imperceptible because it's exactly half
+        xPos = 0;
       }
+
       gsap.set(strip, { x: xPos });
     };
 
@@ -68,37 +65,64 @@ const AppShowcase = () => {
     };
   }, []);
 
+  const renderPhoneSet = (keyPrefix) => (
+    <div className="flex flex-row items-end gap-5 px-3 sm:gap-6 sm:px-4 md:gap-8">
+      {screens.map((screen, index) => (
+        <div
+          key={`${keyPrefix}-${index}`}
+          className="relative flex-shrink-0 w-[132px] h-[280px] min-[400px]:w-[148px] min-[400px]:h-[312px] sm:w-[190px] sm:h-[400px] md:w-[220px] md:h-[460px]"
+        >
+          <div
+            className="relative w-full h-full rounded-[2.5rem] border-[3px] border-white/20 overflow-hidden bg-white"
+            style={{
+              boxShadow:
+                "0 0 0 2px rgba(255,255,255,0.15), 0 24px 48px rgba(0,0,0,0.3)",
+            }}
+          >
+            <div className="absolute left-1/2 top-3 z-10 h-1.5 w-14 -translate-x-1/2 rounded-full bg-black/10 sm:top-4 sm:h-2 sm:w-16" />
+            <div className="absolute inset-[6px] overflow-hidden rounded-[2rem] bg-[#f8f8f8] sm:inset-[8px] md:inset-[10px]">
+              <img
+                src={screen.src}
+                alt={screen.label}
+                className="block h-full w-full object-contain object-top"
+              />
+            </div>
+          </div>
+
+          <p className="mt-3 text-center text-xs font-medium text-white/60 sm:text-sm md:mt-4">
+            {screen.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <section
-      className="relative bg-customOrange overflow-x-hidden overflow-y-visible pt-12 md:pt-20 pb-[40px] md:pb-[60px]"
+      className="relative overflow-x-hidden overflow-y-visible bg-customOrange pt-12 pb-10 md:pt-20 md:pb-[60px]"
       id="app-showcase"
     >
-
-
-      {/* Fixed Header */}
-      <div className="relative z-10 w-full text-center mb-16">
+      <div className="relative z-10 mb-16 w-full text-center">
         <div className="px-6">
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-white font-extrabold leading-tight">
+          <h2 className="font-heading text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
             Every Screen.{" "}
-            <span style={{ color: "rgba(255,255,255,0.75)" }}>Offline Ready.</span>
+            <span style={{ color: "rgba(255,255,255,0.75)" }}>
+              Offline Ready.
+            </span>
           </h2>
-          <p className="font-body mt-3 md:mt-4 text-white/70 max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl font-medium leading-relaxed px-4">
-            From onboarding to instant payment — QPay works completely offline.
+          <p className="font-body mx-auto mt-3 max-w-2xl px-4 text-sm font-medium leading-relaxed text-white/70 sm:text-base md:mt-4 md:text-lg lg:text-xl">
+            From onboarding to instant payment, QPay works completely offline.
           </p>
         </div>
 
-        {/* Marquee Strip */}
-        <div className="mt-6 md:mt-10 overflow-hidden relative w-full">
-          <div
-            ref={marqueeRef}
-            className="flex flex-row w-max"
-          >
+        <div className="relative mt-6 w-full overflow-hidden md:mt-10">
+          <div ref={marqueeRef} className="flex w-max flex-row">
             {[...Array(10)].map((_, setIndex) => (
               <div key={`pill-set-${setIndex}`} className="flex gap-4 px-2">
-                {pills.map((pill, i) => (
+                {pills.map((pill, index) => (
                   <span
-                    key={`pill-${setIndex}-${i}`}
-                    className="bg-white text-gray-800 border border-gray-200 rounded-full px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-medium whitespace-nowrap flex-shrink-0"
+                    key={`pill-${setIndex}-${index}`}
+                    className="flex-shrink-0 whitespace-nowrap rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-800 md:px-4 md:py-2 md:text-sm"
                   >
                     {pill}
                   </span>
@@ -109,69 +133,10 @@ const AppShowcase = () => {
         </div>
       </div>
 
-      {/* Phone Strip */}
-      <div className="relative w-full pb-[48px]">
-        <div
-          ref={stripRef}
-          className="flex flex-row w-max"
-        >
-          {/* Set 1 */}
-          <div className="flex flex-row items-end gap-8 px-4">
-            {screens.map((screen, i) => (
-              <div
-                key={`screen1-${i}`}
-                className="relative flex-shrink-0 w-[160px] h-[340px] sm:w-[190px] sm:h-[400px] md:w-[220px] md:h-[460px]"
-              >
-                {/* Phone Frame */}
-                <div 
-                  className="relative w-full h-full rounded-[2.8rem] border-[3px] border-white/20 overflow-hidden bg-white"
-                  style={{ boxShadow: "0 0 0 2px rgba(255,255,255,0.15), 0 24px 48px rgba(0,0,0,0.3)" }}
-                >
-                  {/* Screen Image */}
-                  <img
-                    src={screen.src}
-                    alt={screen.label}
-                    className="w-full h-full object-cover block"
-                    style={{ transform: 'scale(1.06)' }}
-                  />
-                </div>
-
-                {/* Label */}
-                <p className="text-center text-sm mt-4 text-white/60 font-medium">
-                  {screen.label}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Set 2 */}
-          <div className="flex flex-row items-end gap-8 px-4">
-            {screens.map((screen, i) => (
-              <div
-                key={`screen2-${i}`}
-                className="relative flex-shrink-0 w-[160px] h-[340px] sm:w-[190px] sm:h-[400px] md:w-[220px] md:h-[460px]"
-              >
-                {/* Phone Frame */}
-                <div 
-                  className="relative w-full h-full rounded-[2.5rem] border-[3px] border-white/20 overflow-hidden bg-white"
-                  style={{ boxShadow: "0 0 0 2px rgba(255,255,255,0.15), 0 24px 48px rgba(0,0,0,0.3)" }}
-                >
-                  {/* Screen Image */}
-                  <img
-                    src={screen.src}
-                    alt={screen.label}
-                    className="w-full h-full object-cover"
-                    style={{ transform: 'scale(1.06)' }}
-                  />
-                </div>
-
-                {/* Label */}
-                <p className="text-center text-sm mt-4 text-white/60 font-medium">
-                  {screen.label}
-                </p>
-              </div>
-            ))}
-          </div>
+      <div className="relative w-full pb-8 md:pb-12">
+        <div ref={stripRef} className="flex w-max flex-row">
+          {renderPhoneSet("screen1")}
+          {renderPhoneSet("screen2")}
         </div>
       </div>
     </section>

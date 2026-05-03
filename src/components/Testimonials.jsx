@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
 const Testimonials = () => {
@@ -94,7 +93,7 @@ const Testimonials = () => {
             >
               {/* Large decorative quote mark */}
               <div className="text-[120px] font-serif text-orange-50 group-hover:text-orange-100 transition-colors duration-300 leading-none select-none pointer-events-none absolute -top-2 right-4">
-                "
+                &quot;
               </div>
 
               {/* Star rating row */}
@@ -104,7 +103,7 @@ const Testimonials = () => {
 
               {/* Quote text */}
               <p className="text-gray-800 text-base md:text-lg lg:text-xl font-medium leading-relaxed mb-6 md:mb-8 relative z-10 flex-grow">
-                "{item.quote}"
+                &quot;{item.quote}&quot;
               </p>
 
               {/* Bottom author row */}

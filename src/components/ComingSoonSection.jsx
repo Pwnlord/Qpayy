@@ -1,34 +1,39 @@
-import React from "react";
 import { motion } from "framer-motion";
 import appStore from "./images/apple ssooo.png";
 import googlePlay from "./images/google s.png";
 
+const cardFrame =
+  "absolute overflow-hidden border border-black/5 bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.10)]";
+
 const ComingSoonSection = () => {
   return (
     <section
-      className="relative w-full max-w-[1440px] mx-auto px-4 sm:px-6 py-12 md:py-16 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 overflow-hidden bg-white"
+      id="coming-soon"
+      className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center gap-8 overflow-hidden bg-white px-4 py-12 sm:px-6 md:flex-row md:gap-12 md:py-16"
     >
-      {/* Decorative Background Q */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[200px] sm:text-[400px] md:text-[600px] font-black text-gray-100 opacity-50 z-[-1] pointer-events-none select-none tracking-tighter">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 z-[-1] -translate-x-1/2 -translate-y-1/2 select-none text-[200px] font-black tracking-tighter text-gray-100 opacity-50 sm:text-[400px] md:text-[600px]">
         Q
       </div>
 
-      {/* ─── LEFT COLUMN ─── */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 max-w-full sm:max-w-[500px] lg:max-w-xl text-center md:text-left"
+        className="relative z-10 max-w-full text-center md:text-left lg:max-w-xl"
       >
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 leading-tight"
+          className="font-heading mb-4 text-3xl leading-tight sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl"
         >
-          Get <span className="text-transparent bg-clip-text bg-gradient-to-r from-customOrange to-red-600">QPay</span> on <br className="hidden md:block" /> Your Phone
+          Get{" "}
+          <span className="bg-gradient-to-r from-customOrange to-red-600 bg-clip-text text-transparent">
+            QPay
+          </span>{" "}
+          on <br className="hidden md:block" /> Your Phone
         </motion.h2>
 
         <motion.p
@@ -36,261 +41,179 @@ const ComingSoonSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-6 md:mb-8 leading-relaxed max-w-lg mx-auto md:mx-0 font-medium"
+          className="font-body mx-auto mb-6 max-w-lg text-sm font-medium leading-relaxed text-gray-600 sm:text-base md:mx-0 md:mb-8 md:text-lg lg:text-xl"
         >
-          Download free and start paying offline instantly. No internet needed, no bank account required. Available now on iOS and Android.
+          Download free and start paying offline instantly. No internet needed,
+          no bank account required. Available now on iOS and Android.
         </motion.p>
 
-        {/* App Store Badges */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="flex flex-row justify-center md:justify-start gap-4 mb-4"
+          className="mb-4 flex flex-row justify-center gap-4 md:justify-start"
         >
           <a
             href="#"
-            className="block rounded-2xl overflow-hidden transition-transform hover:scale-105 active:scale-95 duration-200"
+            className="block overflow-hidden rounded-2xl transition-transform duration-200 hover:scale-105 active:scale-95"
           >
             <img
               src={googlePlay}
               alt="Get it on Google Play"
-              className="h-12 md:h-14 w-auto"
+              className="h-12 w-auto md:h-14"
             />
           </a>
 
           <a
             href="#"
-            className="block rounded-2xl overflow-hidden transition-transform hover:scale-105 active:scale-95 duration-200"
+            className="block overflow-hidden rounded-2xl transition-transform duration-200 hover:scale-105 active:scale-95"
           >
             <img
               src={appStore}
               alt="Download on the App Store"
-              className="h-12 md:h-14 w-auto"
+              className="h-12 w-auto md:h-14"
             />
           </a>
         </motion.div>
 
-        {/* Trust Line */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="text-gray-400 text-sm mt-4 text-center md:text-left"
+          className="mt-4 text-center text-sm text-gray-400 md:text-left"
         >
           Free to download · No subscription · Works offline from day one
         </motion.p>
       </motion.div>
 
-      {/* ─── RIGHT COLUMN — Floating UI Cards Composition ─── */}
-
-      {/* Desktop: 3-card fanned layout */}
-      <div className="hidden md:block relative flex-shrink-0" style={{ width: '100%', maxWidth: '520px', height: '580px' }}>
-        {/* Subtle background circle */}
+      <div className="relative h-[360px] w-full max-w-[340px] flex-shrink-0 sm:h-[430px] sm:max-w-[390px] md:h-[470px] md:max-w-[410px] lg:h-[580px] lg:max-w-[520px]">
         <div
-          className="absolute rounded-full border border-gray-100 pointer-events-none"
+          className="pointer-events-none absolute rounded-full border border-gray-100"
           style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '420px',
-            height: '420px',
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "82%",
+            height: "72%",
             zIndex: 0,
           }}
         />
 
-        {/* Card A — Merchant Terminal (back left) */}
         <motion.div
           initial={{ opacity: 0, x: -40, rotate: -10 }}
           whileInView={{ opacity: 0.85, x: 0, rotate: -6 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="absolute"
-          style={{
-            left: 0,
-            top: '40px',
-            zIndex: 1,
-            width: '220px',
-            borderRadius: '28px',
-            overflow: 'hidden',
-            opacity: 0.85,
-            boxShadow: '0 20px 60px rgba(0,0,0,0.10)',
-            border: '1px solid rgba(0,0,0,0.06)',
-          }}
+          className={`${cardFrame} left-0 top-[48px] z-[1] w-[38%] rounded-[22px] sm:top-[52px] sm:rounded-[24px] md:top-[58px] md:rounded-[26px] lg:top-[40px] lg:rounded-[28px]`}
         >
           <img
             src="/lean/Hidden balance.png"
             alt="Dashboard"
-            style={{ width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "cover",
+              objectPosition: "top",
+              display: "block",
+            }}
           />
         </motion.div>
 
-        {/* Card B — Payment Success (middle, hero) */}
-        {/* Wrapper handles CSS centering since Framer Motion takes over transform */}
         <div
-          className="absolute"
-          style={{
-            left: '50%',
-            top: 0,
-            zIndex: 3,
-            transform: 'translateX(-50%)',
-            width: '250px',
-          }}
+          className="absolute left-1/2 top-0 z-[3] w-[43%] -translate-x-1/2"
         >
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0 }}
-            whileHover={{ scale: 1.03, boxShadow: '0 40px 100px rgba(249,84,29,0.2)' }}
-            className="relative"
-            style={{
-              width: '250px',
-              borderRadius: '32px',
-              overflow: 'hidden',
-              boxShadow: '0 32px 80px rgba(249,84,29,0.15), 0 8px 24px rgba(0,0,0,0.08)',
-              border: '1px solid rgba(249,84,29,0.12)',
-              cursor: 'pointer',
+            transition={{ duration: 0.7 }}
+            whileHover={{
+              scale: 1.03,
+              boxShadow: "0 40px 100px rgba(249,84,29,0.2)",
             }}
+            className="relative overflow-hidden rounded-[26px] border border-[rgba(249,84,29,0.12)] shadow-[0_32px_80px_rgba(249,84,29,0.15),0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px] md:rounded-[30px] lg:rounded-[32px]"
+            style={{ cursor: "pointer" }}
           >
-            {/* Continuous breathing float */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             >
               <img
                 src="/lean/photo_2026-05-02_02-06-16.jpg"
                 alt="QR Screen"
-                style={{ width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                  objectPosition: "top",
+                  display: "block",
+                }}
               />
             </motion.div>
           </motion.div>
 
-          {/* Floating badge — Payment Confirmed */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.7 }}
-            className="absolute flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-gray-100"
+            className="absolute flex items-center gap-2 rounded-full border border-gray-100 bg-white px-4 py-2"
             style={{
-              top: '-16px',
-              right: '-16px',
+              top: "-12px",
+              right: "-8px",
               zIndex: 10,
-              boxShadow: '0 10px 30px rgba(0,0,0,0.10)',
+              boxShadow: "0 10px 30px rgba(0,0,0,0.10)",
             }}
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-gray-800 text-xs font-bold whitespace-nowrap">Payment Confirmed</span>
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="whitespace-nowrap text-xs font-bold text-gray-800">
+              Payment Confirmed
+            </span>
           </motion.div>
         </div>
 
-        {/* Card C — Dashboard (front right) */}
         <motion.div
           initial={{ opacity: 0, x: 40, rotate: 10 }}
           whileInView={{ opacity: 0.85, x: 0, rotate: 5 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="absolute"
-          style={{
-            right: 0,
-            top: '60px',
-            zIndex: 2,
-            width: '220px',
-            borderRadius: '28px',
-            overflow: 'hidden',
-            opacity: 0.85,
-            boxShadow: '0 20px 60px rgba(0,0,0,0.10)',
-            border: '1px solid rgba(0,0,0,0.06)',
-          }}
+          className={`${cardFrame} right-0 top-[64px] z-[2] w-[38%] rounded-[22px] sm:top-[70px] sm:rounded-[24px] md:top-[76px] md:rounded-[26px] lg:top-[60px] lg:rounded-[28px]`}
         >
           <img
             src="/lean/Default1.png"
             alt="Merchant Dashboard"
-            style={{ width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "cover",
+              objectPosition: "top",
+              display: "block",
+            }}
           />
 
-          {/* Floating badge — Balance */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.7 }}
-            className="absolute flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-gray-100"
+            className="absolute flex items-center gap-2 rounded-full border border-gray-100 bg-white px-4 py-2"
             style={{
-              bottom: '24px',
-              left: '-20px',
+              bottom: "18px",
+              left: "-8px",
               zIndex: 10,
-              boxShadow: '0 10px 30px rgba(0,0,0,0.10)',
+              boxShadow: "0 10px 30px rgba(0,0,0,0.10)",
             }}
           >
-            <span className="w-2 h-2 rounded-full bg-customOrange" />
-            <span className="text-gray-800 text-xs font-bold whitespace-nowrap">₦1,250.00 Balance</span>
+            <span className="h-2 w-2 rounded-full bg-customOrange" />
+            <span className="whitespace-nowrap text-xs font-bold text-gray-800">
+              N1,250.00 Balance
+            </span>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Mobile: Single centered Card B (Payment Success) only */}
-      <div className="hidden relative mx-auto" style={{ width: '240px' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative"
-          style={{
-            width: '240px',
-            borderRadius: '32px',
-            overflow: 'hidden',
-            boxShadow: '0 32px 80px rgba(249,84,29,0.15), 0 8px 24px rgba(0,0,0,0.08)',
-            border: '1px solid rgba(249,84,29,0.12)',
-          }}
-        >
-          <img
-            src="/lean/photo_2026-05-02_02-06-16.jpg"
-            alt="QR Screen"
-            style={{ width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
-          />
-
-          {/* Floating badge — Payment Confirmed */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.7 }}
-            className="absolute flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-gray-100"
-            style={{
-              top: '-16px',
-              right: '-16px',
-              zIndex: 10,
-              boxShadow: '0 10px 30px rgba(0,0,0,0.10)',
-            }}
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-gray-800 text-xs font-bold whitespace-nowrap">Payment Confirmed</span>
-          </motion.div>
-
-          {/* Floating badge — Balance */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.9 }}
-            className="absolute flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-gray-100"
-            style={{
-              bottom: '24px',
-              left: '-20px',
-              zIndex: 10,
-              boxShadow: '0 10px 30px rgba(0,0,0,0.10)',
-            }}
-          >
-            <span className="w-2 h-2 rounded-full bg-customOrange" />
-            <span className="text-gray-800 text-xs font-bold whitespace-nowrap">₦1,250.00 Balance</span>
-          </motion.div>
-        </motion.div>
-      </div>
     </section>
   );
 };

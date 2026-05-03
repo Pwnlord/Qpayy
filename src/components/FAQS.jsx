@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const FAQs = () => {
@@ -113,7 +113,7 @@ const FAQs = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex flex-col mt-8 md:mt-0 sticky top-8">
+          <div className="flex flex-col mt-8 md:mt-0 md:sticky md:top-8">
             {rightFaqs.map((faq, idx) => (
               <AccordionItem key={idx + 3} faq={faq} index={idx + 3} isLeft={false} />
             ))}
@@ -141,4 +141,3 @@ const FAQs = () => {
 };
 
 export default FAQs;
-
