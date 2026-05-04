@@ -373,8 +373,8 @@ const Hero = () => {
             <div className="pointer-events-none absolute left-[4%] top-[10%] h-[22%] w-[22%] rounded-full bg-white/16 blur-3xl" />
             <div className="pointer-events-none absolute bottom-[6%] right-[2%] h-[26%] w-[26%] rounded-full bg-black/18 blur-3xl" />
 
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/14 bg-white/10 p-3 shadow-[0_28px_80px_rgba(0,0,0,0.22)] backdrop-blur-[6px] sm:rounded-[2.5rem] sm:p-4 md:rounded-[2.35rem] md:p-3 lg:rounded-[2.75rem] xl:rounded-[3rem]">
-              <div className="rounded-[1.6rem] bg-gradient-to-b from-white/8 to-black/10 p-2 sm:rounded-[2rem] sm:p-3 md:rounded-[1.75rem] md:p-2.5 lg:rounded-[2rem]">
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/14 bg-white/10 px-3 pt-3 pb-0 shadow-[0_28px_80px_rgba(0,0,0,0.22)] backdrop-blur-[6px] sm:rounded-[2.5rem] sm:px-4 sm:pt-4 sm:pb-0 md:rounded-[2.35rem] md:px-3 md:pt-3 md:pb-0 lg:rounded-[2.75rem] xl:rounded-[3rem]">
+              <div className="rounded-[1.6rem] bg-gradient-to-b from-white/8 to-black/10 px-2 pt-2 pb-0 sm:rounded-[2rem] sm:px-3 sm:pt-3 sm:pb-0 md:rounded-[1.75rem] md:px-2.5 md:pt-2.5 md:pb-0 lg:rounded-[2rem]">
                 <div className="relative overflow-hidden rounded-[1.4rem] bg-white/5 sm:rounded-[1.8rem] md:rounded-[1.55rem] lg:rounded-[1.8rem]">
                   <img
                     src="/ChatGPT_Image_Apr_28__2026_at_06_21_14_PM-removebg-preview.png"

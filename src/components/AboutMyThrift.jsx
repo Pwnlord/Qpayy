@@ -56,6 +56,9 @@ const AboutMyThrift = () => {
         },
         (context) => {
           const { isMobile } = context.conditions;
+          const scrubAmount = isMobile ? 0.2 : 1;
+          const stepEase = isMobile ? "none" : "power2.out";
+          const screenEase = isMobile ? "none" : "power2.inOut";
 
         if (!pinContainerRef.current) return undefined;
 
@@ -90,22 +93,32 @@ const AboutMyThrift = () => {
             trigger: pinContainerRef.current,
             start: "top top",
             end: isMobile ? "+=110%" : "+=200%",
-            scrub: 1,
+            scrub: scrubAmount,
             pin: true,
+            anticipatePin: isMobile ? 1 : 0,
+            fastScrollEnd: true,
             invalidateOnRefresh: true,
           },
         });
 
-        tl.to(leftTextRef.current[0], { y: -30, opacity: 0, duration: 0.3 }, 0.1)
-          .to(leftTextRef.current[1], { y: 0, opacity: 1, duration: 0.3 }, 0.5)
+        tl.to(
+          leftTextRef.current[0],
+          { y: -30, opacity: 0, duration: 0.3, ease: stepEase },
+          0.1
+        )
+          .to(
+            leftTextRef.current[1],
+            { y: 0, opacity: 1, duration: 0.3, ease: stepEase },
+            0.5
+          )
           .to(
             rightScreensRef.current[0],
-            { yPercent: -100, duration: 1, ease: "power2.inOut" },
+            { yPercent: -100, duration: 1, ease: screenEase },
             0
           )
           .to(
             rightScreensRef.current[1],
-            { yPercent: 0, duration: 1, ease: "power2.inOut" },
+            { yPercent: 0, duration: 1, ease: screenEase },
             0
           )
           .to(
@@ -132,16 +145,24 @@ const AboutMyThrift = () => {
             },
             0.5
           )
-          .to(leftTextRef.current[1], { y: -30, opacity: 0, duration: 0.3 }, 1.1)
-          .to(leftTextRef.current[2], { y: 0, opacity: 1, duration: 0.3 }, 1.5)
+          .to(
+            leftTextRef.current[1],
+            { y: -30, opacity: 0, duration: 0.3, ease: stepEase },
+            1.1
+          )
+          .to(
+            leftTextRef.current[2],
+            { y: 0, opacity: 1, duration: 0.3, ease: stepEase },
+            1.5
+          )
           .to(
             rightScreensRef.current[1],
-            { yPercent: -100, duration: 1, ease: "power2.inOut" },
+            { yPercent: -100, duration: 1, ease: screenEase },
             1
           )
           .to(
             rightScreensRef.current[2],
-            { yPercent: 0, duration: 1, ease: "power2.inOut" },
+            { yPercent: 0, duration: 1, ease: screenEase },
             1
           )
           .to(
